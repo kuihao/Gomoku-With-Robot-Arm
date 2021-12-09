@@ -250,7 +250,7 @@ class detect():
 if __name__ == "__main__":
     from camera import camera
     import cv2
-    cam = camera(url = 'http://192.168.43.40:4747/mjpegfeed', angle = 180, debug = False)
+    cam = camera(url = 0, angle = 180, debug = False)
     
     cam.start()
     det = detect(cam)

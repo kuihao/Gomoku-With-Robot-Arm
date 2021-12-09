@@ -4,7 +4,7 @@ import threading
 from time import sleep, time
 
 class client(threading.Thread):
-    def __init__(self, signal, port='COM4', baud=9600, show = False):
+    def __init__(self, signal, port='COM3', baud=9600, show = False):
         threading.Thread.__init__(self)
         self.singal = signal # thread flag
         self.show = show
@@ -190,14 +190,14 @@ class usb():
             self.Close()
             print('bye.')
 
-    def Send(self, data, port = 'COM4'):
+    def Send(self, data, port = 'COM3'):
         try:
             self.client[port].Send(data)
             self.singal.set()
         except Exception as e:
             print(e)
 
-    def UserSend(self, data=None, port='COM4'):
+    def UserSend(self, data=None, port='COM3'):
         print(f'[UserSend] {data}')
         self.Wait(port=port)
         try:
@@ -215,7 +215,7 @@ class usb():
         except Exception as e:
             print(e)
 
-    def Wait(self, port = 'COM4'):
+    def Wait(self, port = 'COM3'):
         sleep(0.5)
         while not self.client[port].state == 2:
             print(f"[ERROR] can't send because {port}.state is {self.client[port].state}")
@@ -233,7 +233,7 @@ class usb():
 
 from random import randint
 class Dummy(threading.Thread):
-    def __init__(self, signal, port='COM4', baud=9600, show = False):
+    def __init__(self, signal, port='COM3', baud=9600, show = False):
         threading.Thread.__init__(self)
         self.singal = signal # thread flag
         self.show = show
@@ -366,7 +366,7 @@ class Dummy(threading.Thread):
 
 if __name__ == "__main__":
     usb = usb()
-    usb.AddClient('COM4', 9600, show = True)
+    usb.AddClient('COM3', 9600, show = True)
     usb.Run()
     while True:
         sleep(1)

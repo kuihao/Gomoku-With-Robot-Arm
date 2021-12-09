@@ -100,7 +100,7 @@ class Client(object):
         return "Human {}".format(self.player)
 
 class Play_With_Robot(threading.Thread):
-    def __init__(self, parent = None, who_first = 1, client = Client(url = 'http://127.0.0.1:4747/mjpegfeed', debug = True), testMode = False, daemon=True):
+    def __init__(self, parent = None, who_first = 1, client = Client(url = 0, debug = True), testMode = False, daemon=True): #'http://127.0.0.1:4747/mjpegfeed'
         super().__init__()
         self.client = client        
         self.testMode = testMode

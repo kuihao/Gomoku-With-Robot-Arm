@@ -19,8 +19,9 @@ import copy
 import play_with_robot
         
 mixer.init()
+P = r'C:\Users\kuiha\OneDrive - 國立成功大學 National Cheng Kung University\桌面\arm\Gomoku-With-Robot-Arm\ESgomoku'
 
-sys.path.extend(['./serial', './Braccio','./camera'])
+sys.path.extend([f'./serial', './Braccio','./camera'])
 testMode = False
 
 class Path():
@@ -49,7 +50,7 @@ mixer.init()
 bgm = BGM()
 
 #TODO init here
-url = 'http://192.168.43.40:4747/mjpegfeed'
+url = 0#'http://192.168.43.40:4747/mjpegfeed'
 
 class PyMainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):

@@ -1,3 +1,16 @@
+import tensorflow as tf
+
+from tensorflow.keras.layers import (
+    Input,Conv2D,Activation, Dense, Flatten, Dropout,
+    Add,BatchNormalization,
+    )
+from tensorflow.keras.optimizers import Adam, RMSprop
+from tensorflow.keras import Model
+from tensorflow.keras.regularizers import l2
+import tensorflow.keras.backend as K
+from tensorflow.keras.models import load_model
+#from tensorflow.keras.utils import np_utils
+'''
 from keras.engine.topology import Input
 from keras.engine.training import Model
 from keras.layers.convolutional import Conv2D
@@ -8,18 +21,18 @@ from keras.regularizers import l2
 from keras.optimizers import Adam, RMSprop
 import keras.backend as K
 from keras.models import load_model
-
 from keras.utils import np_utils
+'''
 
 import numpy as np
 
 import csv
 
 import tensorflow as tf
-config = tf.ConfigProto()
+config = tf.compat.v1.ConfigProto()
 #config.gpu_options.per_process_gpu_memory_fraction = 0.4
 config.gpu_options.allow_growth = True
-session = tf.Session(config=config)
+session = tf.compat.v1.Session(config=config)
 
 class PolicyValueNet():
     """policy-value network"""

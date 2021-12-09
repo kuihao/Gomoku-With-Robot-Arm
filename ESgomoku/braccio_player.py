@@ -30,7 +30,7 @@ u = usb()
 class Global():
     @staticmethod
     def port():
-        return 'COM4'
+        return 'COM3'
 
 def init(testMode):
     global u

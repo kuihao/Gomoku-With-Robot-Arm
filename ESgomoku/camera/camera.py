@@ -239,5 +239,6 @@ class camera(threading.Thread):
         
 
 if __name__ == "__main__":
-    cam = camera(url = 'http://192.168.43.40:4747/mjpegfeed', angle = 0, debug = False)
+    #'http://192.168.43.40:4747/mjpegfeed'
+    cam = camera(url = 0, angle = 0, debug = False)
     cam.start()
