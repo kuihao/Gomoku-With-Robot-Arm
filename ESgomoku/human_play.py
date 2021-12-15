@@ -15,7 +15,7 @@ from mcts_alphaZero import MCTSPlayer
 # from policy_value_net_pytorch import PolicyValueNet  # Pytorch
 # from policy_value_net_tensorflow import PolicyValueNet # Tensorflow
 from policy_value_net_keras import PolicyValueNet  # Keras
-
+import numpy as np
 
 class Human(object):
     """
@@ -83,5 +83,11 @@ def run():
         print('\n\rquit')
 
 
+def ini_computer_pos():
+    computer_pos = np.array([4,4])
+    filename = 'computer_pos'
+    np.save(filename,computer_pos)
+
 if __name__ == '__main__':
+    ini_computer_pos()
     run()

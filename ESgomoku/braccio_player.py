@@ -243,7 +243,7 @@ def MakeData(x, y,ang = 90,catch=0,time=20,EXC = False):
         y = y_function(x, y)
     t, o, p = s.Calc(x, y)
     if t != 0:
-        return [time, ang, t, o, p, 0 , 30 + catch*30]
+        return [time, ang, t, o, p, 0 , 30 + catch*30] #120
     else:
         return False
     
@@ -420,19 +420,38 @@ class BraccioPlayer(object):
                 sleep(0.5)
             self.Action(loc)
     
+def ini_computer_pos():
+    computer_pos = np.array([0,0])
+    filename = 'computer_pos'
+    np.save(filename,computer_pos)
 
 if __name__ == '__main__':
+    #ini_computer_pos()
     b = BraccioPlayer(None)
-    init(False)
+    init(False) 
     debug_mode = False
+    sleep(10)
+    word = np.array([0,0])
     while True:
         if not debug_mode:
-            word = input(f'Enter Data (y, x), use dot(".") to seprate...\n')
+            #word = input(f'Enter Data (y, x), use dot(",") to seprate...\n')
             try:
-                word = word.replace('\n','').split('.')
-                loc = [int(word[0]), int(word[1])]
+                new_pos = np.load('computer_pos.npy') # kuihao edit.     
+            except Exception as e:
+                continue
+            print('Read new pos',new_pos)
+            if new_pos[0] != word[0] or new_pos[1] != word[1]:
+                word = new_pos
+            else:
+                sleep(1)
+                continue
+            try:
+                #word = word.replace('\n','').split(',')
+                loc = [int(word[0])+1, int(word[1])+1]
                 b.Action(loc)
             except Exception as e:
+                pass
+                '''
                 if word == ['debug']:
                     debug_mode = True
                 elif word == ['show']:
@@ -443,6 +462,7 @@ if __name__ == '__main__':
                             b.Action([x,y])
                 elif word == ['EXC']:
                     EXcalibration()
+                '''
                             
             #word = input(f'Enter Data (y, x, ang), use dot(".") to seprate...').replace('\n','').split('.')
             #u.UserSend(data = MakeData(x = int(word[0]), y= int(word[1]) ,ang = int(word[2]), catch = int(word[3])), port = Global.port())

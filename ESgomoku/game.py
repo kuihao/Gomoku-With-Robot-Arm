@@ -7,6 +7,10 @@ from __future__ import print_function
 import numpy as np
 from copy import deepcopy
 
+def save_computer_last_loc(np_array):
+    filename = 'computer_pos'
+    np.save(filename,np_array)
+
 class Board(object):
     """board for the game"""
 
@@ -164,6 +168,13 @@ class Game(object):
                     print('_'.center(8), end='')
             print('\r\n\r\n')
         print('---')
+        #print(board.states)
+        if board.states:
+            last_loc = list(board.states.keys())[-1]
+            if board.states.get(last_loc, -1) == 2:
+                save_computer_last_loc(np.array([int(last_loc/9),int(last_loc%9)]))
+                #print(f"{int(last_loc/9)}, {int(last_loc%9)}")
+
 
     def start_play(self, player1, player2, start_player=0, is_shown=1):
         """start a game between two players"""
